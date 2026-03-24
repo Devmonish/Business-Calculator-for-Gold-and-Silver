@@ -1,0 +1,174 @@
+package com.example.finalproject;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity6 extends AppCompatActivity {
+    TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11;
+    EditText e1,e2,e3,e4;
+    Button b1,b2,b3,b4,b5;
+    Double a,b,d,e,f,g,h,i,j,k,l,m,n,p,q,r;
+    int x1,x,y,z,c;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main6);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        t1=findViewById(R.id.textView4);
+        t2=findViewById(R.id.textView9);
+        t3=findViewById(R.id.textView10);
+        t4=findViewById(R.id.textView11);
+        t5=findViewById(R.id.textView12);
+        t6=findViewById(R.id.textView13);
+        t7=findViewById(R.id.textView16);
+        t8=findViewById(R.id.textView18);
+        t9=findViewById(R.id.textView27);
+        t10=findViewById(R.id.textView26);
+        t11=findViewById(R.id.textView138);
+        e1=findViewById(R.id.editTextNumberDecimal3);
+        e2=findViewById(R.id.editTextNumberDecimal7);
+        e3=findViewById(R.id.editTextNumberDecimal11);
+        e4=findViewById(R.id.editTextNumberDecimal12);
+        b1=findViewById(R.id.button15);
+        b2=findViewById(R.id.button16);
+        b3=findViewById(R.id.button17);
+        b4=findViewById(R.id.button18);
+        b5=findViewById(R.id.button60);
+        a=getIntent().getDoubleExtra("Value_a", 0);
+        b=getIntent().getDoubleExtra("Value_b", 0);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = e1.getText().toString().trim();
+                String s2 = e2.getText().toString().trim();
+                String s3 = e3.getText().toString().trim();
+                String s4 = e4.getText().toString().trim();
+
+                e = s1.isEmpty() ? 0.0 : Double.parseDouble(s1);
+                f = s2.isEmpty() ? 1.0 : Double.parseDouble(s2);
+                l = s3.isEmpty() ? 0.0 : Double.parseDouble(s3);
+                n = s4.isEmpty() ? 0.0 : Double.parseDouble(s4);
+                if(e==0.0){
+                    Toast.makeText(MainActivity6.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+                }
+                if(e>=1){
+                    l = s3.isEmpty() ? 100.0 : Double.parseDouble(s3);
+                }
+                d=(a*.92)/10;
+                x1=(int) Math.ceil(d*10);
+                t11.setText("Rate:"+x1);
+                h=e*d;
+                y=(int) Math.ceil(h);
+                t2.setText("A:"+y);
+
+                if (e == 0.0) {
+                    Toast.makeText(MainActivity6.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+                }else if(e >  0 && e < 0.6) {
+                    g=e*d*0.17;
+                }else if (e >= 0.6 && e < 1.5) {
+                    g = e * d * 0.14;
+                } else if (e >= 1.5 && e < 2.2) {
+                    g = e * d * 0.125;
+                } else if (e >= 2.2 && e < 10) {
+                    g = e * d * 0.11;
+                } else if (e >= 10 && e < 15) {
+                    g = e * d * 0.1;
+                } else if (e >= 15) {
+                    g = e * d * 0.09;
+                }
+                x=(int) Math.ceil(g);
+                t4.setText("M:"+x);
+                i=y+x+l;
+                t3.setText("GT:"+i);
+                j=i*0.03;
+                j = Math.round(j * 100.0) / 100.0;
+                t6.setText("GST:"+j);
+                k=i+j;
+                z=(int) Math.ceil(k);
+                t5.setText("NT:"+z);
+                p=z-n;
+                t8.setText("Bal:"+p);
+                m=k*1.03;
+                c=(int) Math.ceil(m);
+                t1.setText("Cr:"+c);
+                q=c-n;
+                t9.setText("CrBal:"+q);
+                r=i/e;
+                r=Math.round(r * 100.0) / 100.0;
+                t7.setText("BR:"+r);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                e1.setText("");
+                e2.setText("");
+                e3.setText("");
+                e4.setText("");
+                t1.setText("");
+                t2.setText("");
+                t4.setText("");
+                t3.setText("");
+                t6.setText("");
+                t5.setText("");
+                t7.setText("");
+                t8.setText("");
+                t9.setText("");
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a = getIntent().getDoubleExtra("Value_a", 0);
+                b = getIntent().getDoubleExtra("Value_b", 0);
+                Intent in =new Intent(MainActivity6.this, MainActivity7.class);
+                in.putExtra("Value_a",a);
+                in.putExtra("Value_b",b);
+                startActivity(in);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a = getIntent().getDoubleExtra("Value_a", 0);
+                b = getIntent().getDoubleExtra("Value_b", 0);
+                Intent in =new Intent(MainActivity6.this, MainActivity4.class);
+                in.putExtra("Value_a",a);
+                in.putExtra("Value_b",b);
+                startActivity(in);
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a = getIntent().getDoubleExtra("Value_a", 0);
+                b = getIntent().getDoubleExtra("Value_b", 0);
+                Intent in =new Intent(MainActivity6.this, MainActivity3.class);
+                in.putExtra("Value_a",a);
+                in.putExtra("Value_b",b);
+                startActivity(in);
+            }
+        });
+    }
+}
