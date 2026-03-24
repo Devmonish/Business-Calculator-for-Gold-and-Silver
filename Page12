@@ -15,7 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity20 extends AppCompatActivity {
+public class MainActivity12 extends AppCompatActivity {
     TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11;
     EditText e1,e2,e3,e4;
     Button b1,b2,b3,b4;
@@ -27,31 +27,31 @@ public class MainActivity20 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main20);
+        setContentView(R.layout.activity_main12);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        t1=findViewById(R.id.textView211);
-        t2=findViewById(R.id.textView212);
-        t3=findViewById(R.id.textView213);
-        t4=findViewById(R.id.textView214);
-        t5=findViewById(R.id.textView215);
-        t6=findViewById(R.id.textView216);
-        t7=findViewById(R.id.textView217);
-        t8=findViewById(R.id.textView218);
-        t9=findViewById(R.id.textView219);
-        t10=findViewById(R.id.textView220);
-        t11=findViewById(R.id.textView148);
-        e1=findViewById(R.id.editTextNumberDecimal201);
-        e2=findViewById(R.id.editTextNumberDecimal202);
-        e3=findViewById(R.id.editTextNumberDecimal203);
-        e4=findViewById(R.id.editTextNumberDecimal204);
-        b1=findViewById(R.id.button205);
-        b2=findViewById(R.id.button206);
-        b3=findViewById(R.id.button207);
-        b4=findViewById(R.id.button208);
+        t1=findViewById(R.id.textView77);
+        t2=findViewById(R.id.textView78);
+        t3=findViewById(R.id.textView79);
+        t4=findViewById(R.id.textView80);
+        t5=findViewById(R.id.textView81);
+        t6=findViewById(R.id.textView82);
+        t7=findViewById(R.id.textView83);
+        t8=findViewById(R.id.textView84);
+        t9=findViewById(R.id.textView85);
+        t10=findViewById(R.id.textView86);
+        t11=findViewById(R.id.textView142);
+        e1=findViewById(R.id.editTextNumberDecimal33);
+        e2=findViewById(R.id.editTextNumberDecimal34);
+        e3=findViewById(R.id.editTextNumberDecimal35);
+        e4=findViewById(R.id.editTextNumberDecimal36);
+        b1=findViewById(R.id.button62);
+        b2=findViewById(R.id.button63);
+        b3=findViewById(R.id.button64);
+        b4=findViewById(R.id.button65);
         a=getIntent().getDoubleExtra("Value_a", 0);
         b=getIntent().getDoubleExtra("Value_b", 0);
         b1.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class MainActivity20 extends AppCompatActivity {
                 g = s3.isEmpty() ? 0.0 : Double.parseDouble(s3);
                 h = s4.isEmpty() ? 0.0 : Double.parseDouble(s4);
                 if(e==0.0){
-                    Toast.makeText(MainActivity20.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity12.this, "Enter Weight", Toast.LENGTH_SHORT).show();
                 }
                 c=b/1000;
                 x1=(int) Math.ceil(c*1000);
@@ -75,7 +75,25 @@ public class MainActivity20 extends AppCompatActivity {
                 i=e*c;
                 y=(int) Math.ceil(i);
                 t1.setText("A:"+y);
-                d=e*1.2;
+                if(f == 1){
+                    if(e==0){
+                        Toast.makeText(MainActivity12.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+                    } else if (e>0 && e<=5) {
+                        d= 100.0;
+                    } else if (e>5 && e<10) {
+                        d=150.0;
+                    } else if (e>=10 && e<20) {
+                        d=200.0;
+                    } else if (e>=20 && e<70) {
+                        d=250.0;
+                    } else if (e>=70 && e<100) {
+                        d=300.0;
+                    } else if (e>=100) {
+                        d=e*3;
+                    }
+                }else {
+                    d=f*100;
+                }
                 x=(int) Math.ceil(d);
                 t2.setText("M:"+x);
                 j=x+y+g;
@@ -91,8 +109,8 @@ public class MainActivity20 extends AppCompatActivity {
                 n=l*1.03;
                 w=(int) Math.ceil(n);
                 t7.setText("Cr:"+w);
-                o=n-h;
-                t8.setText("CrBal"+o);
+                o=w-h;
+                t8.setText("CrBal:"+o);
                 p=j/e;
                 p=Math.round(p * 100.0) / 100.0;
                 t9.setText("BR:"+p);
@@ -103,7 +121,7 @@ public class MainActivity20 extends AppCompatActivity {
             public void onClick(View v) {
                 a = getIntent().getDoubleExtra("Value_a", 0);
                 b = getIntent().getDoubleExtra("Value_b", 0);
-                Intent in =new Intent(MainActivity20.this, MainActivity7.class);
+                Intent in =new Intent(MainActivity12.this, MainActivity7.class);
                 in.putExtra("Value_a",a);
                 in.putExtra("Value_b",b);
                 startActivity(in);
@@ -114,7 +132,7 @@ public class MainActivity20 extends AppCompatActivity {
             public void onClick(View v) {
                 a = getIntent().getDoubleExtra("Value_a", 0);
                 b = getIntent().getDoubleExtra("Value_b", 0);
-                Intent in =new Intent(MainActivity20.this, MainActivity3.class);
+                Intent in =new Intent(MainActivity12.this, MainActivity3.class);
                 in.putExtra("Value_a",a);
                 in.putExtra("Value_b",b);
                 startActivity(in);
