@@ -1,0 +1,137 @@
+package com.example.finalproject;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity17 extends AppCompatActivity {
+    TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+    EditText e1,e2,e3,e4;
+    Button b1,b2,b3,b4;
+    Double a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p;
+    int w,x,y,z;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main17);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        t1=findViewById(R.id.textView116);
+        t2=findViewById(R.id.textView117);
+        t3=findViewById(R.id.textView130);
+        t4=findViewById(R.id.textView118);
+        t5=findViewById(R.id.textView129);
+        t6=findViewById(R.id.textView128);
+        t7=findViewById(R.id.textView119);
+        t8=findViewById(R.id.textView127);
+        t9=findViewById(R.id.textView120);
+        t10=findViewById(R.id.textView126);
+        e1=findViewById(R.id.editTextNumberDecimal47);
+        e2=findViewById(R.id.editTextNumberDecimal52);
+        e3=findViewById(R.id.editTextNumberDecimal51);
+        e4=findViewById(R.id.editTextNumberDecimal48);
+        b1=findViewById(R.id.button81);
+        b2=findViewById(R.id.button82);
+        b3=findViewById(R.id.button83);
+        b4=findViewById(R.id.button84);
+        a=getIntent().getDoubleExtra("Value_a", 0);
+        b=getIntent().getDoubleExtra("Value_b", 0);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = e1.getText().toString().trim();
+                String s2 = e2.getText().toString().trim();
+                String s3 = e3.getText().toString().trim();
+                String s4 = e4.getText().toString().trim();
+
+                e = s1.isEmpty() ? 0.0 : Double.parseDouble(s1);
+                f = s2.isEmpty() ? 1.0 : Double.parseDouble(s2);
+                g = s3.isEmpty() ? 0.0 : Double.parseDouble(s3);
+                h = s4.isEmpty() ? 0.0 : Double.parseDouble(s4);
+                if(e==0.0){
+                    Toast.makeText(MainActivity17.this, "Enter Weight", Toast.LENGTH_SHORT).show();
+                }
+                c=b/1000;
+                i=e*c;
+                y=(int) Math.ceil(i);
+                t1.setText("A:"+y);
+                d=f*(250.0+c);
+                x=(int) Math.ceil(d);
+                t2.setText("M:"+x);
+                j=x+y+h;
+                t3.setText("GT:"+j);
+                k=j*0.03;
+                k = Math.round(k * 100.0) / 100.0;
+                t4.setText("GST:"+k);
+                l=j+k;
+                z=(int) Math.ceil(l);
+                t5.setText("NT:"+z);
+                m=z-g;
+                t6.setText("Bal:"+m);
+                n=l*1.03;
+                w=(int) Math.ceil(n);
+                t7.setText("Cr:"+w);
+                o=w-g;
+                t8.setText("CrBal:"+o);
+                p=j/e;
+                p=Math.round(p * 100.0) / 100.0;
+                t9.setText("BR:"+p);
+
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a = getIntent().getDoubleExtra("Value_a", 0);
+                b = getIntent().getDoubleExtra("Value_b", 0);
+                Intent in =new Intent(MainActivity17.this, MainActivity7.class);
+                in.putExtra("Value_a",a);
+                in.putExtra("Value_b",b);
+                startActivity(in);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                a = getIntent().getDoubleExtra("Value_a", 0);
+                b = getIntent().getDoubleExtra("Value_b", 0);
+                Intent in =new Intent(MainActivity17.this, MainActivity3.class);
+                in.putExtra("Value_a",a);
+                in.putExtra("Value_b",b);
+                startActivity(in);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                e1.setText("");
+                e2.setText("");
+                e3.setText("");
+                e4.setText("");
+                t1.setText("");
+                t2.setText("");
+                t4.setText("");
+                t3.setText("");
+                t6.setText("");
+                t5.setText("");
+                t7.setText("");
+                t8.setText("");
+                t9.setText("");
+            }
+        });
+    }
+}
